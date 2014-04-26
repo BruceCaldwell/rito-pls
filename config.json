@@ -1,0 +1,22 @@
+{
+	"apiKey": "",
+
+	"chunkTiming": 1000,
+	"chunkSize": 35,
+
+	"sql": {
+		"host": "localhost",
+		"user": "root",
+		"password": "",
+		"database": "elopass_node"
+	},
+
+	"caching": {
+		"allowedTimeBasic": 43200000,
+		"checkTimeBasic": 3600000,
+		"allowedTimeSQL": 900000,
+		"checkTimeSQL": 60000
+	},
+
+	"ignoreFatal": false
+}
