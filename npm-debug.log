@@ -1,94 +1,58 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '../build' ]
 2 info using npm@1.4.3
 3 info using node@v0.10.26
-4 warn package.json rito-pls@1.0.0 No description
-5 warn package.json rito-pls@1.0.0 No repository field.
-6 warn package.json rito-pls@1.0.0 No README data
-7 verbose readDependencies using package.json deps
-8 verbose install where, deps [ '/home/bruce/rito-pls',
-8 verbose install   [ 'grunt',
-8 verbose install     'grunt-contrib-uglify',
-8 verbose install     'grunt-contrib-watch',
-8 verbose install     'grunt-contrib-concat',
-8 verbose install     'grunt-contrib-jshint',
-8 verbose install     'grunt-contrib-quint',
-8 verbose install     'grunt-contrib-qunit' ] ]
-9 info preinstall rito-pls@1.0.0
-10 verbose readDependencies using package.json deps
-11 verbose already installed skipping grunt-contrib-watch@~0.5.3 /home/bruce/rito-pls
-12 verbose already installed skipping grunt@~0.4.2 /home/bruce/rito-pls
-13 verbose already installed skipping grunt-contrib-uglify@~0.2.4 /home/bruce/rito-pls
-14 verbose already installed skipping grunt-contrib-concat@~0.4.0 /home/bruce/rito-pls
-15 verbose already installed skipping grunt-contrib-jshint@~0.10.0 /home/bruce/rito-pls
-16 verbose cache add [ 'grunt-contrib-quint@~0.5.0', null ]
-17 verbose cache add name=undefined spec="grunt-contrib-quint@~0.5.0" args=["grunt-contrib-quint@~0.5.0",null]
-18 verbose parsed url { protocol: null,
-18 verbose parsed url   slashes: null,
-18 verbose parsed url   auth: null,
-18 verbose parsed url   host: null,
-18 verbose parsed url   port: null,
-18 verbose parsed url   hostname: null,
-18 verbose parsed url   hash: null,
-18 verbose parsed url   search: null,
-18 verbose parsed url   query: null,
-18 verbose parsed url   pathname: 'grunt-contrib-quint@~0.5.0',
-18 verbose parsed url   path: 'grunt-contrib-quint@~0.5.0',
-18 verbose parsed url   href: 'grunt-contrib-quint@~0.5.0' }
-19 verbose cache add name="grunt-contrib-quint" spec="~0.5.0" args=["grunt-contrib-quint","~0.5.0"]
-20 verbose parsed url { protocol: null,
-20 verbose parsed url   slashes: null,
-20 verbose parsed url   auth: null,
-20 verbose parsed url   host: null,
-20 verbose parsed url   port: null,
-20 verbose parsed url   hostname: null,
-20 verbose parsed url   hash: null,
-20 verbose parsed url   search: null,
-20 verbose parsed url   query: null,
-20 verbose parsed url   pathname: '~0.5.0',
-20 verbose parsed url   path: '~0.5.0',
-20 verbose parsed url   href: '~0.5.0' }
-21 verbose addNamed [ 'grunt-contrib-quint', '~0.5.0' ]
-22 verbose addNamed [ null, '>=0.5.0-0 <0.6.0-0' ]
-23 verbose already installed skipping grunt-contrib-qunit@^0.4.0 /home/bruce/rito-pls
-24 silly lockFile 390d7b6a-grunt-contrib-quint-0-5-0 grunt-contrib-quint@~0.5.0
-25 verbose lock grunt-contrib-quint@~0.5.0 /home/bruce/.npm/390d7b6a-grunt-contrib-quint-0-5-0.lock
-26 silly addNameRange { name: 'grunt-contrib-quint',
-26 silly addNameRange   range: '>=0.5.0-0 <0.6.0-0',
-26 silly addNameRange   hasData: false }
-27 verbose url raw grunt-contrib-quint
-28 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-quint' ]
-29 verbose url resolved https://registry.npmjs.org/grunt-contrib-quint
-30 info trying registry request attempt 1 at 10:44:50
-31 http GET https://registry.npmjs.org/grunt-contrib-quint
-32 http 404 https://registry.npmjs.org/grunt-contrib-quint
-33 silly registry.get cb [ 404,
-33 silly registry.get   { date: 'Sun, 27 Apr 2014 01:44:50 GMT',
-33 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-33 silly registry.get     'content-type': 'application/json',
-33 silly registry.get     via: '1.1 varnish',
-33 silly registry.get     'cache-control': 'max-age=0',
-33 silly registry.get     'content-length': '52',
-33 silly registry.get     'accept-ranges': 'bytes',
-33 silly registry.get     age: '0',
-33 silly registry.get     'x-served-by': 'cache-v41-ASH, cache-sv60-SJC3',
-33 silly registry.get     'x-cache': 'MISS, MISS',
-33 silly registry.get     'x-cache-hits': '0, 0',
-33 silly registry.get     'x-timer': 'S1398563089.848708630,VS0,VS37,VE122,VE160',
-33 silly registry.get     'keep-alive': 'timeout=10, max=50',
-33 silly registry.get     connection: 'Keep-Alive' } ]
-34 silly lockFile 390d7b6a-grunt-contrib-quint-0-5-0 grunt-contrib-quint@~0.5.0
-35 silly lockFile 390d7b6a-grunt-contrib-quint-0-5-0 grunt-contrib-quint@~0.5.0
-36 error 404 'grunt-contrib-quint' is not in the npm registry.
-36 error 404 You should bug the author to publish it
-36 error 404 It was specified as a dependency of 'rito-pls'
-36 error 404
-36 error 404 Note that you can also install from a
-36 error 404 tarball, folder, or http url, or git url.
-37 error System Linux 3.13.6-1-ARCH
-38 error command "/usr/bin/node" "/usr/bin/npm" "install"
-39 error cwd /home/bruce/rito-pls
-40 error node -v v0.10.26
-41 error npm -v 1.4.3
-42 error code E404
-43 verbose exit [ 1, true ]
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ '../build', null ]
+6 verbose cache add name=undefined spec="../build" args=["../build",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '../build',
+7 verbose parsed url   path: '../build',
+7 verbose parsed url   href: '../build' }
+8 silly lockFile 1bdcfcbd-build ../build
+9 verbose lock ../build /home/bruce/.npm/1bdcfcbd-build.lock
+10 info maybeGithub Attempting ../build from git://github.com/../build
+11 silly lockFile 4687c766-git-github-com-build git://github.com/../build
+12 verbose lock git://github.com/../build /home/bruce/.npm/4687c766-git-github-com-build.lock
+13 verbose addRemoteGit [ 'git://github.com/../build', 'master' ]
+14 verbose git clone git://github.com/../build Cloning into bare repository '/home/bruce/.npm/_git-remotes/git-github-com-build-4687c766'...
+14 verbose git clone git://github.com/../build fatal: remote error:
+14 verbose git clone git://github.com/../build   Repository not found.
+15 silly lockFile 4687c766-git-github-com-build git://github.com/../build
+16 silly lockFile 4687c766-git-github-com-build git://github.com/../build
+17 info maybeGithub Attempting ../build from git+ssh://git@github.com:../build
+18 silly lockFile 094546b2-git-github-com-build git@github.com:../build
+19 verbose lock git@github.com:../build /home/bruce/.npm/094546b2-git-github-com-build.lock
+20 verbose addRemoteGit [ 'git@github.com:../build', 'master' ]
+21 error git clone git@github.com:../build Cloning into bare repository '/home/bruce/.npm/_git-remotes/git-github-com-build-094546b2'...
+21 error git clone git@github.com:../build Host key verification failed.
+21 error git clone git@github.com:../build fatal: Could not read from remote repository.
+21 error git clone git@github.com:../build
+21 error git clone git@github.com:../build Please make sure you have the correct access rights
+21 error git clone git@github.com:../build and the repository exists.
+22 silly lockFile 094546b2-git-github-com-build git@github.com:../build
+23 silly lockFile 094546b2-git-github-com-build git@github.com:../build
+24 silly lockFile 1bdcfcbd-build ../build
+25 silly lockFile 1bdcfcbd-build ../build
+26 error addLocal Could not install ../build
+27 error Error: ENOENT, stat '../build'
+28 error If you need help, you may report this *entire* log,
+28 error including the npm and node versions, at:
+28 error     <http://github.com/npm/npm/issues>
+29 error System Linux 3.13.6-1-ARCH
+30 error command "/usr/bin/node" "/usr/bin/npm" "install" "../build"
+31 error cwd /home/bruce/rito-pls
+32 error node -v v0.10.26
+33 error npm -v 1.4.3
+34 error path ../build
+35 error code ENOENT
+36 error errno 34
+37 verbose exit [ 34, true ]

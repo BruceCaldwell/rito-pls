@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 		},
 		uglify: {
 			options: {
-				banner: '/*! ritopls v<%= pkg.version %> by Bruce Caldwell @link(https://github.com/BruceCaldwell/ritopls). Minified by Uglify on: <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+				banner: '/*! ritopls v<%= pkg.trueVersion %> by Bruce Caldwell @link(https://github.com/BruceCaldwell/ritopls). Minified by Uglify on: <%= grunt.template.today("dd-mm-yyyy") %> */\n'
 			},
 			dist: {
 				files: {
@@ -22,7 +22,6 @@ module.exports = function (grunt) {
 		}
 	});
 
-// load plugins
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');

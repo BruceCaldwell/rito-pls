@@ -47,7 +47,7 @@
 
 		}).on('error', function (err) {
 				if (!ignoreFatal)
-					throw 'Node.js HTTP Error: ' + err;
+					throw 'ritopos: Fatal Error: Node.js HTTP Error: ' + err;
 			});
 	};
 

@@ -66,7 +66,7 @@ ritoPlsUtils = {};
 	var con = mysql.createConnection(sql);
 
 	con.connect(function (err) {
-		if (err) throw 'Error: Could not connect to SQL database!';
+		if (err) throw 'ritopls: Fatal Error: Could not connect to SQL database!';
 
 		var doQuery = function (query, func) {
 			con.query(query, function (err, res) {
@@ -223,7 +223,7 @@ ritoPlsUtils = {};
 
 		}).on('error', function (err) {
 				if (!ignoreFatal)
-					throw 'Node.js HTTP Error: ' + err;
+					throw 'ritopos: Fatal Error: Node.js HTTP Error: ' + err;
 			});
 	};
 
