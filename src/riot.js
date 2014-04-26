@@ -7,8 +7,8 @@
 
 	var http = require('http'),
 		utils = $.utils,
-		apiKey = require(__dirname + '/config.json').apiKey,
-		ignoreFatal = require(__dirname + '/config.json').ignoreFatal;
+		apiKey = $.config.apiKey,
+		ignoreFatal = $.config.ignoreFatal;
 
 	/*
 		Internal HTTP request function for requests to the Riot API

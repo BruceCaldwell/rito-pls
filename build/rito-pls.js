@@ -1,5 +1,7 @@
-ritoPls = exports;
-ritoPlsUtils = {};
+var ritoPls = exports,
+	ritoPlsUtils = {};
+
+ritoPlsUtils.config = require(require('path').dirname(module.parent.filename) + '/ritopls.json');
 
 (function ($) {
 	$.utils = {};
@@ -7,7 +9,7 @@ ritoPlsUtils = {};
 		Utilities class
 		For functions that are needed in many places, to reduce redundancy
 	 */
-	var chunkSize = require(__dirname + '/config.json').chunkSize;
+	var chunkSize = $.config.chunkSize;
 
 	$.utils.fixNames = function (users, extra) {
 		if (users instanceof Array) {
@@ -61,7 +63,7 @@ ritoPlsUtils = {};
 	 */
 	var mysql = require('mysql'), // TODO `npm install mysql` on server this ends up on
 		utils = $.utils,
-		sql = require(__dirname + '/config.json').sql;
+		sql = $.config.sql;
 
 	var con = mysql.createConnection(sql);
 
@@ -171,6 +173,9 @@ ritoPlsUtils = {};
 					inserts = ['user_cache_meta', 'riot_id', 'region', 'data_name', 'value', id, reg, slug, JSON.stringify(data)];
 					break;
 			}
+
+			if (sql && inserts) doQuery(mysql.format(sql, inserts), function () {
+			});
 		};
 	});
 })(ritoPlsUtils);
@@ -183,8 +188,8 @@ ritoPlsUtils = {};
 
 	var http = require('http'),
 		utils = $.utils,
-		apiKey = require(__dirname + '/config.json').apiKey,
-		ignoreFatal = require(__dirname + '/config.json').ignoreFatal;
+		apiKey = $.config.apiKey,
+		ignoreFatal = $.config.ignoreFatal;
 
 	/*
 		Internal HTTP request function for requests to the Riot API
@@ -318,7 +323,7 @@ ritoPlsUtils = {};
 	 */
 	var utils = $.utils,
 		removeSummonerInfo = $.sql.removeSummonerInfo,
-		config = require(__dirname + '/config.json').caching,
+		config = $.config.caching,
 		userBasicCache = {
 			na: {},
 			br: {},
@@ -408,7 +413,7 @@ ritoPlsUtils = {};
 		cache = $.cache,
 		utils = $.utils,
 		sql = $.sql,
-		config = require(__dirname + '/config.json');
+		config = $.config;
 
 	/*
 		Initializing variables

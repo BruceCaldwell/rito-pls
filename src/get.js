@@ -8,7 +8,7 @@
 		cache = $.cache,
 		utils = $.utils,
 		sql = $.sql,
-		config = require(__dirname + '/config.json');
+		config = $.config;
 
 	/*
 		Initializing variables

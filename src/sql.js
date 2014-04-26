@@ -6,7 +6,7 @@
 	 */
 	var mysql = require('mysql'), // TODO `npm install mysql` on server this ends up on
 		utils = $.utils,
-		sql = require(__dirname + '/config.json').sql;
+		sql = $.config.sql;
 
 	var con = mysql.createConnection(sql);
 
@@ -116,6 +116,9 @@
 					inserts = ['user_cache_meta', 'riot_id', 'region', 'data_name', 'value', id, reg, slug, JSON.stringify(data)];
 					break;
 			}
+
+			if (sql && inserts) doQuery(mysql.format(sql, inserts), function () {
+			});
 		};
 	});
 })(ritoPlsUtils);

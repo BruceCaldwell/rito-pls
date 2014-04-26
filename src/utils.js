@@ -1,5 +1,7 @@
-ritoPls = exports;
-ritoPlsUtils = {};
+var ritoPls = exports,
+	ritoPlsUtils = {};
+
+ritoPlsUtils.config = require(require('path').dirname(module.parent.filename) + '/ritopls.json');
 
 (function ($) {
 	$.utils = {};
@@ -7,7 +9,7 @@ ritoPlsUtils = {};
 		Utilities class
 		For functions that are needed in many places, to reduce redundancy
 	 */
-	var chunkSize = require(__dirname + '/config.json').chunkSize;
+	var chunkSize = $.config.chunkSize;
 
 	$.utils.fixNames = function (users, extra) {
 		if (users instanceof Array) {

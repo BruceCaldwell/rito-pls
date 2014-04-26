@@ -6,7 +6,7 @@
 	 */
 	var utils = $.utils,
 		removeSummonerInfo = $.sql.removeSummonerInfo,
-		config = require(__dirname + '/config.json').caching,
+		config = $.config.caching,
 		userBasicCache = {
 			na: {},
 			br: {},
