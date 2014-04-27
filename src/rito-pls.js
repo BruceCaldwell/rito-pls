@@ -18,7 +18,7 @@
 		}
 	};
 
-	RitoPls.getFullSummonerByName = function (name, reg) {
+	RitoPls.getSummonerByName = function (name, reg) {
 		name = utils.fixNames(name);
 
 		var interactions = new EventEmitter;
