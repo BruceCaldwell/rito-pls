@@ -47,8 +47,15 @@
 		return interactions;
 	};
 
-	RitoPls.getBasicInfoByName = function (name, reg) {
+	RitoPls.getBasicByName = function (name, reg) {
+		var interactions = new EventEmitter;
 
+		get.basicByName(name, reg, function (obj) {
+			if (!obj || !obj.name) interactions.emit('ready', {id: 0, desc: 'Failed to retrieve summoner basic info object.'});
+			else interactions.emit('error', obj);
+		});
+
+		return interactions;
 	};
 
 	module.exports = RitoPls;
