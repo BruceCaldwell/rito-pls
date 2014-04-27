@@ -1,20 +1,20 @@
-var ritoPls = exports,
-	ritoPlsUtils = {};
+(function () { // Configuration setup
+	var fs = require('fs');
 
-ritoPlsUtils.config = require(require('path').dirname(module.parent.filename) + '/ritopls.json');
+	ritoPlsConfig = require(require('path').dirname(require.main.filename) + '/ritopls.json');
+})();
 
-(function ($) {
-	$.utils = {};
+(function () {
 	/*
 		Utilities class
 		For functions that are needed in many places, to reduce redundancy
 	 */
-	var chunkSize = $.config.chunkSize;
+	var chunkSize = ritoPlsConfig.chunkSize;
 
-	$.utils.fixNames = function (users, extra) {
+	exports.fixNames = function (users, extra) {
 		if (users instanceof Array) {
 			users.forEach(function (el, id) {
-				users[id] = $.utils.fixNames(el);
+				users[id] = exports.fixNames(el);
 			});
 		}
 
@@ -27,14 +27,14 @@ ritoPlsUtils.config = require(require('path').dirname(module.parent.filename) + 
 		return users;
 	};
 
-	$.utils.chunkArray = function (array) {
+	exports.chunkArray = function (array) {
 		return [].concat.apply([],
 			array.map(function (elem, i) {
 				return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
 			}));
 	};
 
-	$.utils.maybeParseJson = function (json, func) {
+	exports.maybeParseJson = function (json, func) {
 		try {
 			var obj = JSON.parse(json);
 
@@ -49,9 +49,9 @@ ritoPlsUtils.config = require(require('path').dirname(module.parent.filename) + 
 		return json;
 	};
 
-	$.utils.removeArrayElement = function (array, index) {
+	exports.removeArrayElement = function (array, index) {
 		array.splice(index, 1);
 
 		return array;
 	};
-})(ritoPlsUtils);
+})();

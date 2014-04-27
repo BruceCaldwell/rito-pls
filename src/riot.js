@@ -1,19 +1,21 @@
-(function ($) {
-	$.riot = {};
+(function () {
 	/*
 		HTTP Requests to Riot API Class
 		Interfaces to API documented here: `https://developer.riotgames.com/api/methods`
 	 */
 
 	var http = require('http'),
-		utils = $.utils,
-		apiKey = $.config.apiKey,
-		ignoreFatal = $.config.ignoreFatal;
+		utils = require(__dirname + '/utils.js'),
+		apiKey = ritoPlsConfig.apiKey,
+		ignoreFatal = ritoPlsConfig.ignoreFatal;
 
 	/*
 		Internal HTTP request function for requests to the Riot API
 	 */
 	var doReqRiot = function (uri, func) {
+		if (!apiKey)
+			throw 'ritopls: Error: No API Key!';
+
 		var opts = {
 			host: 'prod.api.pvp.net',
 			port: 80, // HTTPS
@@ -51,7 +53,7 @@
 			});
 	};
 
-	$.riot.summoner = function (slug, id, reg, func) {
+	exports.summoner = function (slug, id, reg, func) {
 		var uri;
 
 		switch (slug) {
@@ -82,7 +84,7 @@
 	/*
 		Retrieve Summoner IDs from Riot servers based on username and region
 	 */
-	$.riot.basicObjsByName = function (users, reg, func) {
+	exports.basicObjsByName = function (users, reg, func) {
 		users = utils.fixNames(users, encodeURIComponent);
 
 		var getVar = users.join(),
@@ -91,7 +93,7 @@
 		doReqRiot(baseURI + getVar, func);
 	};
 
-	$.riot.basicObjsById = function (ids, reg, func) {
+	exports.basicObjsById = function (ids, reg, func) {
 		var getVar = ids.join(),
 			baseURI = '/' + reg + '/v1.4/summoner/';
 
@@ -101,7 +103,7 @@
 	/*
 		Retrieves a Summoner's Runes
 	 */
-	$.riot.runes = function (ids, reg, func) {
+	exports.runes = function (ids, reg, func) {
 		if (ids instanceof Array)
 			ids = ids.join();
 
@@ -113,7 +115,7 @@
 	/*
 		Retrieves a Summoner's Masteries
 	 */
-	$.riot.masteries = function (ids, reg, func) {
+	exports.masteries = function (ids, reg, func) {
 		if (ids instanceof Array)
 			ids = ids.join();
 
@@ -125,7 +127,7 @@
 	/*
 		Retrieves stats for a specific team (to perhaps be used in the future for LCS teams)
 	 */
-	$.riot.teamStats = function (ids, reg, func) {
+	exports.teamStats = function (ids, reg, func) {
 		if (ids instanceof Array)
 			ids = ids.join();
 
@@ -133,4 +135,4 @@
 
 		doReqRiot(uri, func);
 	};
-})(ritoPlsUtils);
+})();

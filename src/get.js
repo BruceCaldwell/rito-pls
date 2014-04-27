@@ -1,14 +1,12 @@
-(function ($) {
-	$.get = {};
+(function () {
 	/*
 		Data API
 		The file where all of the bullshit that goes along with getting Summoner Data comes in
 	 */
-	var getRiot = $.riot,
-		cache = $.cache,
-		utils = $.utils,
-		sql = $.sql,
-		config = $.config;
+	var getRiot = require(__dirname + '/riot.js'),
+		cache = require(__dirname + '/cache.js'),
+		utils = require(__dirname + '/utils.js'),
+		sql = require(__dirname + '/sql.js');
 
 	/*
 		Initializing variables
@@ -25,46 +23,46 @@
 	/*
 		Module functions (to be called outside of this file)
 	 */
-	$.get.basicByName = function (name, reg, func) {
+	exports.basicByName = function (name, reg, func) {
 		var basic;
 		if ((basic = cache.getUserBasic((name = utils.fixNames(name)), reg))) func(basic);
 		else requestedIds[reg].ids.push({name: name, func: func});
 	};
 
-	$.get.runes = function (id, reg, func) {
+	exports.runes = function (id, reg, func) {
 		sql.get('runes', id, reg, function (r) {
 			if (!r) requestedRunes[reg].ids.push({id: id, func: func});
 			else func(r);
 		});
 	};
 
-	$.get.masteries = function (id, reg, func) {
+	exports.masteries = function (id, reg, func) {
 		sql.get('masteries', id, reg, function (r) {
 			if (!r) requestedMasteries[reg].ids.push({id: id, func: func});
 			else func(r);
 		});
 	};
 
-	$.get.teams = function (id, reg, func) {
+	exports.teams = function (id, reg, func) {
 		sql.get('teams', id, reg, function (r) {
 			if (!r) requestedTeams[reg].ids.push({id: id, func: func});
 			else func(r);
 		});
 	};
 
-	$.get.ranked = function (id, reg, func) {
+	exports.ranked = function (id, reg, func) {
 		retrieve('ranked', id, reg, func);
 	};
 
-	$.get.summary = function (id, reg, func) {
+	exports.summary = function (id, reg, func) {
 		retrieve('summary', id, reg, func);
 	};
 
-	$.get.games = function (id, reg, func) {
+	exports.games = function (id, reg, func) {
 		retrieve('games', id, reg, func);
 	};
 
-	$.get.leagues = function (id, reg, func) {
+	exports.leagues = function (id, reg, func) {
 		retrieve('leagues', id, reg, func);
 	};
 
@@ -182,7 +180,7 @@
 		requestedMasteries = JSON.parse(jsonObj);
 		requestedTeams = JSON.parse(jsonObj);
 
-	}, config.chunkTiming); // Every 1 second
+	}, ritoPlsConfig.chunkTiming); // Every 1 second
 
 	/*
 		Cache flushing when entries are old
@@ -194,5 +192,5 @@
 			cache.bringUserDateUp(u.name, u.region);
 			sql.removeSummonerInfo(u.id, u.region);
 		});
-	}, config.caching.checkTimeSQL); // Every 1 min
-})(ritoPlsUtils);
+	}, ritoPlsConfig.caching.checkTimeSQL); // Every 1 min
+})();

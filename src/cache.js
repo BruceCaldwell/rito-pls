@@ -1,12 +1,11 @@
-(function ($) {
-	$.cache = {};
+(function () {
 	/*
 		Caching of Summer IDs and other details
 		Interfaces to direct memory (through the userIdCache Object and MySQL) and automatically handles flushing cache when required
 	 */
-	var utils = $.utils,
-		removeSummonerInfo = $.sql.removeSummonerInfo,
-		config = $.config.caching,
+	var utils = require(__dirname + '/utils.js'),
+		removeSummonerInfo = require(__dirname + '/sql.js').removeSummonerInfo,
+		config = ritoPlsConfig.caching,
 		userBasicCache = {
 			na: {},
 			br: {},
@@ -20,7 +19,7 @@
 	/*
 		Adds an ID to the userIdCache object
 	 */
-	$.cache.add = function (usr, reg, obj) {
+	exports.add = function (usr, reg, obj) {
 		obj.timeAdded = new Date().getTime();
 		obj.timeChecked = new Date().getTime();
 		obj.region = reg;
@@ -30,7 +29,7 @@
 	/*
 		Returns an ID for a cached User, if it exists.
 	 */
-	$.cache.getUserBasic = function (usr, reg) {
+	exports.getUserBasic = function (usr, reg) {
 		usr = utils.fixNames(usr);
 
 		if (userBasicCache[reg].hasOwnProperty(usr)) {
@@ -40,7 +39,7 @@
 		return false;
 	};
 
-	$.cache.getOldUsers = function () {
+	exports.getOldUsers = function () {
 		var oldUserEntries = [];
 
 		for (var region in userBasicCache) {
@@ -60,7 +59,7 @@
 		return oldUserEntries;
 	};
 
-	$.cache.bringUserDateUp = function (user, reg) {
+	exports.bringUserDateUp = function (user, reg) {
 		user = utils.fixNames(user);
 
 		if (userBasicCache[reg].hasOwnProperty(user)) userBasicCache[reg][user].timeChecked = new Date().getTime();
@@ -85,4 +84,4 @@
 			}
 		}
 	}, config.checkTimeBasic); // Every Hour
-})(ritoPlsUtils);
+})();
