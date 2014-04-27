@@ -11,5 +11,15 @@
 		"type": "git",
 		"url": "https://github.com/BruceCaldwell/ritopls.git"
 	},
-	"main": "src/rito-pls.js"
+	"main": "src/rito-pls.js",
+	"license": "GPL v3",
+	"keywords": [
+		"League of Legends",
+		"league",
+		"legends",
+		"LoL",
+		"rito",
+		"Riot",
+		"API"
+	]
 }
