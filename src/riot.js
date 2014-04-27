@@ -34,12 +34,17 @@
 				});
 			}
 
+			else if (res.statusCode === 404) {
+				con.abort();
+				func({});
+			}
+
 			else {
-				console.log(opts.path);
 				con.abort();
 				func({
 					error: true,
-					code: res.statusCode
+					code: res.statusCode,
+					path: opts.path
 				});
 			}
 

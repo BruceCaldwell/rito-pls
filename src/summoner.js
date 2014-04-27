@@ -31,8 +31,13 @@
 					eventEmitter.emit(name + '-ready', user);
 			};
 
+			var emitError = function (slug, err) {
+				err.error = errors[slug];
+				eventEmitter.emit(name + '-error', err);
+			};
+
 			get.runes(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.runes);
+				if (!r || r.error) emitError('runes', r);
 				else {
 					user.runes = r;
 					doneWith('runes');
@@ -40,7 +45,7 @@
 			});
 
 			get.masteries(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.masteries);
+				if (!r || r.error) emitError('masteries', r);
 				else {
 					user.masteries = r;
 					doneWith('masteries');
@@ -48,7 +53,7 @@
 			});
 
 			get.ranked(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.ranked);
+				if (!r || r.error) emitError('ranked', r);
 				else {
 					user.ranked = r;
 					doneWith('ranked');
@@ -56,7 +61,7 @@
 			});
 
 			get.summary(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.summary);
+				if (!r || r.error) emitError('summary', r);
 				else {
 					user.summary = r;
 					doneWith('summary');
@@ -64,7 +69,7 @@
 			});
 
 			get.games(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.games);
+				if (!r || r.error) emitError('games', r);
 				else {
 					user.games = r.games;
 					doneWith('games');
@@ -72,7 +77,7 @@
 			});
 
 			get.leagues(user.id, reg, function (r) {
-				if (!r || r.error) eventEmitter.emit(name + '-error', errors.leagues);
+				if (!r || r.error) emitError('leagues', r);
 				else {
 					user.leagues = r;
 					doneWith('leagues');

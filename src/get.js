@@ -73,14 +73,11 @@
 
 	var retrieve = function (slug, id, reg, func) {
 		sql.get(slug, id, reg, function (r) {
-			if (!r) {
-				getRiot.summoner(slug, id, reg, function (r) {
-					if (r) sql.add(slug, id, reg, r);
-					func(r);
-				});
-			}
-			else func(r);
-		})
+			getRiot.summoner(slug, id, reg, function (r) {
+				if (r) sql.add(slug, id, reg, r);
+				func(r);
+			});
+		});
 	};
 
 	/*
