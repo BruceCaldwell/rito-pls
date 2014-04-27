@@ -5,17 +5,12 @@
 	 */
 
 	var http = require('http'),
-		utils = require(__dirname + '/utils.js'),
-		apiKey = ritoPlsConfig.apiKey,
-		ignoreFatal = ritoPlsConfig.ignoreFatal;
+		utils = require(__dirname + '/utils.js');
 
 	/*
 		Internal HTTP request function for requests to the Riot API
 	 */
 	var doReqRiot = function (uri, func) {
-		if (!apiKey)
-			throw 'ritopls: Error: No API Key!';
-
 		var opts = {
 			host: 'prod.api.pvp.net',
 			port: 80, // HTTPS
@@ -23,8 +18,8 @@
 		};
 
 		// API Key added here, with support for other GET variables before this one.
-		if (opts.path.indexOf('?') !== -1) opts.path = opts.path + '&api_key=' + apiKey;
-		else opts.path = opts.path + '?api_key=' + apiKey;
+		if (opts.path.indexOf('?') !== -1) opts.path = opts.path + '&api_key=' + ritoPlsConfig.apiKey;
+		else opts.path = opts.path + '?api_key=' + ritoPlsConfig.apiKey;
 
 		var con = http.get(opts,function (res) {
 			if (res.statusCode === 200) {
@@ -48,7 +43,7 @@
 			}
 
 		}).on('error', function (err) {
-				if (!ignoreFatal)
+				if (!ritoPlsConfig.ignoreFatal)
 					throw 'ritopos: Fatal Error: Node.js HTTP Error: ' + err;
 			});
 	};

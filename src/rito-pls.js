@@ -1,4 +1,6 @@
 (function () {
+	ritoPlsConfig = require(__dirname + '/ritopls.json'); // Global config var
+
 	var utils = require(__dirname + '/utils.js'),
 		get = require(__dirname + '/get.js'),
 		Summoner = require(__dirname + '/summoner.js'),
@@ -8,13 +10,15 @@
 	eventEmitter.setMaxListeners(0); // This could possibly go well over the suggested maximum. Put at infinite after testing to make sure stray listeners are removed.
 
 	var RitoPls = function (config) {
-		if (config)
-			for (var i in config)
+		if (config) {
+			for (var i in config) {
 				if (config.hasOwnProperty(i))
 					ritoPlsConfig[i] = config[i];
+			}
+		}
 	};
 
-	RitoPls.prototype.getFullSummonerByName = function (name, reg) {
+	RitoPls.getFullSummonerByName = function (name, reg) {
 		name = utils.fixNames(name);
 
 		var interactions = new EventEmitter;
@@ -43,7 +47,7 @@
 		return interactions;
 	};
 
-	RitoPls.prototype.getBasicInfoByName = function (name, reg) {
+	RitoPls.getBasicInfoByName = function (name, reg) {
 
 	};
 

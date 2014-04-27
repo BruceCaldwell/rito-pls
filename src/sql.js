@@ -3,14 +3,13 @@
 		MySQL Class
 		Grabs data like IDs & Basic Summoner Info, and Runes & Masteries
 	 */
-	var mysql = require('mysql'), // TODO `npm install mysql` on server this ends up on
-		utils = require(__dirname + '/utils.js'),
-		sql = ritoPlsConfig.sql;
+	var mysql = require('mysql'),
+		utils = require(__dirname + '/utils.js');
 
 	var con;
 
 	var connect = function (func) {
-		con = mysql.createConnection(sql);
+		con = mysql.createConnection(ritoPlsConfig.sql);
 
 		con.connect(function (err) {
 			setup();

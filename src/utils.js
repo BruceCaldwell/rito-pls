@@ -1,16 +1,8 @@
-(function () { // Configuration setup
-	var fs = require('fs');
-
-	ritoPlsConfig = require(require('path').dirname(require.main.filename) + '/ritopls.json');
-})();
-
 (function () {
 	/*
 		Utilities class
 		For functions that are needed in many places, to reduce redundancy
 	 */
-	var chunkSize = ritoPlsConfig.chunkSize;
-
 	exports.fixNames = function (users, extra) {
 		if (users instanceof Array) {
 			users.forEach(function (el, id) {
@@ -30,7 +22,7 @@
 	exports.chunkArray = function (array) {
 		return [].concat.apply([],
 			array.map(function (elem, i) {
-				return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+				return i % ritoPlsConfig.chunkSize ? [] : [array.slice(i, i + ritoPlsConfig.chunkSize)];
 			}));
 	};
 
