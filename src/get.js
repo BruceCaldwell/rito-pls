@@ -18,7 +18,8 @@
 	var requestedIds = JSON.parse(jsonObj),
 		requestedRunes = JSON.parse(jsonObj),
 		requestedMasteries = JSON.parse(jsonObj),
-		requestedTeams = JSON.parse(jsonObj);
+		requestedTeams = JSON.parse(jsonObj),
+		requestedBasic = JSON.parse(jsonObj);
 
 	/*
 		Module functions (to be called outside of this file)
@@ -27,6 +28,10 @@
 		var basic;
 		if ((basic = cache.getUserBasic((name = utils.fixNames(name)), reg))) func(basic);
 		else requestedIds[reg].ids.push({name: name, func: func});
+	};
+
+	exports.basicById = function (id, reg, func) {
+		requestedBasic[reg].ids.push({id: id, func: func});
 	};
 
 	exports.runes = function (id, reg, func) {
@@ -110,6 +115,21 @@
 					});
 					break;
 
+				case 'basicbyid':
+					getRiot.basicObjsById(list, reg.name, function (obj) {
+						if (!obj) obj = {};
+
+						arr.forEach(function (i) {
+							if (obj.hasOwnProperty(i.id)) {
+								cache.add(obj[i.id].name, reg.name, obj[i.id]);
+								i.func(obj[i.id]);
+							}
+							else
+								i.func(false);
+						});
+					});
+					break;
+
 				case 'runes':
 					getRiot.runes(list, reg.name, function (obj) {
 						if (!obj) obj = {};
@@ -173,12 +193,16 @@
 
 			if (requestedTeams[r].ids.length > 0)
 				getInfo(requestedMasteries[r], 'teams');
+
+			if (requestedBasic[r].ids.length > 0)
+				getInfo(requestedBasic[r], 'basicbyid');
 		});
 
 		requestedIds = JSON.parse(jsonObj);
 		requestedRunes = JSON.parse(jsonObj);
 		requestedMasteries = JSON.parse(jsonObj);
 		requestedTeams = JSON.parse(jsonObj);
+		requestedBasic = JSON.parse(jsonObj);
 
 	}, ritoPlsConfig.chunkTiming); // Every 1 second
 

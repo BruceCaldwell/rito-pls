@@ -72,6 +72,7 @@ The `data` property returned by the 'ready' event has the following properties:
 * `masteries` - Array of Masteries Objects
 * `ranked` - Summoner's ranked stats
 * `summary` - Summoner's stats summaries for all queues they've been a part of
+* `games` - Array of Summoner's recently played games
 * `leagues` - Summoner's league info (where you'll get their LP and YOLOq rank)
 
 ### getBasicByName(name, reg)
@@ -94,5 +95,38 @@ request.on('ready', function(data) {
 
 request.on('error', function(err) {
 
+});
+```
+
+### getById(slug, id, reg)
+
+#### Arguments
+
+* `slug` - This is a string or array of things you want to get about this User. Supported values:
+	* `basic` - Basic info, like `name`
+	* `runes` - Array of Runes Objects
+	* `masteries` - Array of Masteries Objects
+	* `ranked` - Summoner's ranked stats
+	* `summary` - Summoner's stats summaries for all queues they've been a part of
+	* `games` - Array of Summoner's recently played games
+	* `leagues` - Summoner's league info (where you'll get their LP and YOLOq rank)
+* `id` - The ID to search for
+* `reg` - The region to query
+
+#### Explanation
+
+This is everything else that the two above can't do. You have the choice to use `getSummonerByName` to get everything, or use `getBasicByName` and then `getById` to get only specific info about the user.
+
+Here's an example of use:
+
+``` js
+var request = ritoPls.getById(['basic', 'ranked', 'summary'], '5908', 'na');
+
+request.on('ready', function(data) {
+	
+});
+
+request.on('error', function(err) {
+	
 });
 ```

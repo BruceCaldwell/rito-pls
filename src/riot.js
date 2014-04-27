@@ -35,6 +35,7 @@
 			}
 
 			else {
+				console.log(opts.path);
 				con.abort();
 				func({
 					error: true,
