@@ -35,11 +35,11 @@ The RitoPls constructor takes an Object as its only parameter. The `ritopls.json
 	* `password` - Password for above user
 	* `database` - The database for RitoPls to store its cached data in
 
-***TIP:** You can make a `ritopls.json` file, and `require()` it here instead of having this object clutter up your code.*
+_**TIP:** You can make a `ritopls.json` file, and `require()` it here instead of having this object clutter up your code._
 
 ## Public Methods
 
-***TIP:** All of the module's methods are asynchronous by nature, and responses are automatically cached (and flushed after the time periods set in the config object).*
+_**TIP:** All of the module's methods are asynchronous by nature, and responses are automatically cached (and flushed after the time periods set in the config object)._
 
 ### getSummonerByName(name, region)
 
@@ -48,7 +48,21 @@ The RitoPls constructor takes an Object as its only parameter. The `ritopls.json
 * `name` - The Summoner name to search for. This will be sanitized by the module.
 * `region` - The region to search in. Supports one of the following: `na, br, euw, eune, lan, las, oce, kr, ru, tr`
 
-This is your main function. If you never used another method other than this one, you'd still be okay. Returns a Summoner object, which has the following properties:
+This is your main function. If you never used another method other than this one, you'd still be okay. Returns an EventEmitter object, which you can access like this:
+
+```
+var request = ritoPls.getSummonerByName('dyrus', 'na');
+
+request.on('ready', function(data) {
+
+});
+
+request.on('error', function(err) {
+
+});
+```
+
+The `data` property returned by the 'ready' event has the following properties:
 
 * `name` - The Summoner's "pretty" name, as shown in the client
 * `id` - Their Riot ID
