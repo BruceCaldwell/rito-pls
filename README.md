@@ -1,7 +1,7 @@
 RitoPls
 ========
 
-### Version 0.1.3 / 140427
+### Version 0.1.0 / 140427
 
 #### Node.js module that makes retrieving and caching data from the [Riot API](https://developer.riotgames.com/) simple.
 
@@ -21,7 +21,7 @@ npm install rito-pls
 
 ## Usage
 
-```
+``` js
 var RitoPls = require('rito-pls'),
 	ritoPls = new RitoPls(config);
 ```
@@ -52,7 +52,7 @@ _**TIP:** All of the module's methods are asynchronous by nature, and responses 
 
 This is your main function. If you never used another method other than this one, you'd still be okay. Returns an EventEmitter object, which you can access like this:
 
-```
+``` js
 var request = ritoPls.getSummonerByName('dyrus', 'na');
 
 request.on('ready', function(data) {
@@ -85,7 +85,7 @@ The `data` property returned by the 'ready' event has the following properties:
 
 This is the function you want to use for looking up summoners when you don't want all of the extra info (such as when you're showing another Summoner's games). Returns an EventEmmiter object, which you can access like this:
 
-```
+``` js
 var request = ritoPls.getBasicByname('theoddone', 'na');
 
 request.on('ready', function(data) {
