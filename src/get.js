@@ -13,7 +13,7 @@
 	 */
 
 	// This is so that we're not constantly making new objects that take up huge amounts of space
-	jsonObj = '{"na":{"ids":[],"name":"na"},"br":{"ids":[],"name":"br"},"euw":{"ids":[],"name":"na"},"eune":{"ids":[],"name":"na"},"lan":{"ids":[],"name":"lan"},"las":{"ids":[],"name":"las"},"oce":{"ids":[],"name":"oce"},"kr":{"ids":[],"name":"kr"},"ru":{"ids":[],"name":"ru"},"tr":{"ids":[],"name":"tr"}}';
+	jsonObj = '{"na":{"ids":[],"name":"na"},"br":{"ids":[],"name":"br"},"euw":{"ids":[],"name":"euw"},"eune":{"ids":[],"name":"eune"},"lan":{"ids":[],"name":"lan"},"las":{"ids":[],"name":"las"},"oce":{"ids":[],"name":"oce"},"kr":{"ids":[],"name":"kr"},"ru":{"ids":[],"name":"ru"},"tr":{"ids":[],"name":"tr"}}';
 
 	var requestedIds = JSON.parse(jsonObj),
 		requestedRunes = JSON.parse(jsonObj),

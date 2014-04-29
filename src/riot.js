@@ -11,6 +11,8 @@
 		Internal HTTP request function for requests to the Riot API
 	 */
 	var doReqRiot = function (uri, func) {
+		console.log(uri);
+
 		var opts = {
 			host: 'prod.api.pvp.net',
 			port: 80, // HTTPS
@@ -22,6 +24,8 @@
 		else opts.path = opts.path + '?api_key=' + ritoPlsConfig.apiKey;
 
 		var con = http.get(opts,function (res) {
+			console.log(opts.path);
+
 			if (res.statusCode === 200) {
 				var data = '';
 
