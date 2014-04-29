@@ -1,7 +1,7 @@
 RitoPls
 ========
 
-### Version 1.0.2 / 140429
+### Version 1.0.3 / 140429
 
 #### Node.js module that makes retrieving and caching data from the [Riot API](https://developer.riotgames.com/) simple.
 
