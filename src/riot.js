@@ -10,9 +10,23 @@
 	/*
 		Internal HTTP request function for requests to the Riot API
 	 */
-	var doReqRiot = function (uri, func) {
+	var doReqRiot = function (uri, func, reg) {
+		var endpoint;
+		switch(reg) {
+			case 'ru':
+			case 'tr':
+				endpoint = 'eu';
+				break;
+			case 'kr':
+				endpoint = 'asia';
+				break;
+			default:
+				endpoint = 'prod';
+				break;
+		}
+
 		var opts = {
-			host: 'prod.api.pvp.net',
+			host: endpoint + '.api.pvp.net',
 			port: 80, // HTTPS
 			path: '/api/lol' + uri
 		};
@@ -78,7 +92,7 @@
 				break;
 		}
 
-		if (uri) doReqRiot(uri, func);
+		if (uri) doReqRiot(uri, func, reg);
 		else func(false);
 	};
 
@@ -91,14 +105,14 @@
 		var getVar = users.join(),
 			baseURI = '/' + reg + '/v1.4/summoner/by-name/';
 
-		doReqRiot(baseURI + getVar, func);
+		doReqRiot(baseURI + getVar, func, reg);
 	};
 
 	exports.basicObjsById = function (ids, reg, func) {
 		var getVar = ids.join(),
 			baseURI = '/' + reg + '/v1.4/summoner/';
 
-		doReqRiot(baseURI + getVar, func);
+		doReqRiot(baseURI + getVar, func, reg);
 	};
 
 	/*
@@ -110,7 +124,7 @@
 
 		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/runes';
 
-		doReqRiot(uri, func);
+		doReqRiot(uri, func, reg);
 	};
 
 	/*
@@ -122,7 +136,7 @@
 
 		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/masteries';
 
-		doReqRiot(uri, func);
+		doReqRiot(uri, func, reg);
 	};
 
 	/*
@@ -134,6 +148,6 @@
 
 		var uri = '/' + reg + '/v2.2/team/' + ids;
 
-		doReqRiot(uri, func);
+		doReqRiot(uri, func, reg);
 	};
 })();
