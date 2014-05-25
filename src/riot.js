@@ -18,7 +18,7 @@
 				endpoint = 'eu';
 				break;
 			case 'kr':
-				endpoint = 'asia';
+				endpoint = 'kr';
 				break;
 			default:
 				endpoint = 'prod';
