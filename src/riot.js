@@ -27,7 +27,7 @@
 
 		var opts = {
 			host: endpoint + '.api.pvp.net',
-			port: 80, // HTTPS
+			port: 443, // HTTPS
 			path: '/api/lol' + uri
 		};
 
