@@ -4,7 +4,7 @@
 		Interfaces to API documented here: `https://developer.riotgames.com/api/methods`
 	 */
 
-	var http = require('http'),
+	var https = require('https'),
 		utils = require(__dirname + '/utils.js');
 
 	/*
@@ -35,7 +35,7 @@
 		if (opts.path.indexOf('?') !== -1) opts.path = opts.path + '&api_key=' + ritoPlsConfig.apiKey;
 		else opts.path = opts.path + '?api_key=' + ritoPlsConfig.apiKey;
 
-		var con = http.get(opts,function (res) {
+		var con = https.get(opts,function (res) {
 			if (res.statusCode === 200) {
 				var data = '';
 
