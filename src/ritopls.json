@@ -11,6 +11,7 @@
 		"database": "ritopls"
 	},
 
+	"do_cache": true,
 	"caching": {
 		"allowedTimeBasic": 43200000,
 		"checkTimeBasic": 3600000,
