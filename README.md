@@ -3,6 +3,8 @@ RitoPls
 
 ### Version 1.1.0 / 1400530
 
+[![NPM](https://nodei.co/npm/rito-pls.png?downloads=true)](https://nodei.co/npm/rito-pls/)
+
 #### Node.js module that makes retrieving and caching data from the [Riot API](https://developer.riotgames.com/) simple.
 
 Because there are restrictions to how many connections can be made to the Riot API, caching and asynchronous (aggregated) HTTP requests are a must. Node.js is great at handling asynchonous code and serves RitoPls's purpose well.
