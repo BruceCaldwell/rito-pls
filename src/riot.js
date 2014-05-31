@@ -11,22 +11,8 @@
 		Internal HTTP request function for requests to the Riot API
 	 */
 	var doReqRiot = function (uri, func, reg) {
-		var endpoint;
-		switch(reg) {
-			case 'ru':
-			case 'tr':
-				endpoint = 'eu';
-				break;
-			case 'kr':
-				endpoint = 'kr';
-				break;
-			default:
-				endpoint = 'prod';
-				break;
-		}
-
 		var opts = {
-			host: endpoint + '.api.pvp.net',
+			host: reg + '.api.pvp.net',
 			port: 443, // HTTPS
 			path: '/api/lol' + uri
 		};
