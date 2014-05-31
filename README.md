@@ -1,7 +1,7 @@
 RitoPls
 ========
 
-### Version 1.1.0 / 1400530
+### Version 1.2.0 / 1400531
 
 [![NPM](https://nodei.co/npm/rito-pls.png?downloads=true)](https://nodei.co/npm/rito-pls/)
 
