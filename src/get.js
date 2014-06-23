@@ -3,7 +3,7 @@
 		Data API
 		The file where all of the bullshit that goes along with getting Summoner Data comes in
 	 */
-	var getRiot = require(__dirname + '/riot.js'),
+	var userInfo = require(__dirname + '/summoner-http.js'),
 		cache = require(__dirname + '/cache.js'),
 		utils = require(__dirname + '/utils.js'),
 		sql = require(__dirname + '/sql.js');
@@ -73,7 +73,7 @@
 
 	var retrieve = function (slug, id, reg, func) {
 		sql.get(slug, id, reg, function (r) {
-			getRiot.summoner(slug, id, reg, function (r) {
+			userInfo.summoner(slug, id, reg, function (r) {
 				if (r) sql.add(slug, id, reg, r);
 				func(r);
 			});
@@ -98,7 +98,7 @@
 
 			switch (type) {
 				case 'ids':
-					getRiot.basicObjsByName(list, reg.name, function (obj) {
+					userInfo.basicObjsByName(list, reg.name, function (obj) {
 						if (!obj) obj = {};
 
 						arr.forEach(function (i) {
@@ -113,7 +113,7 @@
 					break;
 
 				case 'basicbyid':
-					getRiot.basicObjsById(list, reg.name, function (obj) {
+					userInfo.basicObjsById(list, reg.name, function (obj) {
 						if (!obj) obj = {};
 
 						arr.forEach(function (i) {
@@ -128,7 +128,7 @@
 					break;
 
 				case 'runes':
-					getRiot.runes(list, reg.name, function (obj) {
+					userInfo.runes(list, reg.name, function (obj) {
 						if (!obj) obj = {};
 
 						arr.forEach(function (i) {
@@ -143,7 +143,7 @@
 					break;
 
 				case 'masteries':
-					getRiot.masteries(list, reg.name, function (obj) {
+					userInfo.masteries(list, reg.name, function (obj) {
 						if (!obj) obj = {};
 
 						arr.forEach(function (i) {
@@ -158,7 +158,7 @@
 					break;
 
 				case 'teams':
-					getRiot.teamStats(list, reg.name, function (obj) {
+					userInfo.teamStats(list, reg.name, function (obj) {
 						if (!obj) obj = {};
 
 						arr.forEach(function (i) {

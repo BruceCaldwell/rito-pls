@@ -4,55 +4,7 @@
 		Interfaces to API documented here: `https://developer.riotgames.com/api/methods`
 	 */
 
-	var https = require('https'),
-		utils = require(__dirname + '/utils.js');
-
-	/*
-		Internal HTTP request function for requests to the Riot API
-	 */
-	var doReqRiot = function (uri, func, reg) {
-		var opts = {
-			host: reg + '.api.pvp.net',
-			port: 443, // HTTPS
-			path: '/api/lol' + uri
-		};
-
-		// API Key added here, with support for other GET variables before this one.
-		if (opts.path.indexOf('?') !== -1) opts.path = opts.path + '&api_key=' + ritoPlsConfig.apiKey;
-		else opts.path = opts.path + '?api_key=' + ritoPlsConfig.apiKey;
-
-		var con = https.get(opts,function (res) {
-			if (res.statusCode === 200) {
-				var data = '';
-
-				res.on('data', function (r) {
-					data += r;
-				});
-
-				res.on('end', function () {
-					func(JSON.parse(data));
-				});
-			}
-
-			else if (res.statusCode === 404) {
-				con.abort();
-				func({});
-			}
-
-			else {
-				con.abort();
-				func({
-					error: true,
-					code: res.statusCode,
-					path: opts.path
-				});
-			}
-
-		}).on('error', function (err) {
-				if (!ritoPlsConfig.ignoreFatal)
-					throw 'ritopos: Fatal Error: Node.js HTTP Error: ' + err;
-			});
-	};
+	var utils = require(__dirname + '/utils.js');
 
 	exports.summoner = function (slug, id, reg, func) {
 		var uri;
@@ -78,7 +30,7 @@
 				break;
 		}
 
-		if (uri) doReqRiot(uri, func, reg);
+		if (uri) utils.doReqRiot(uri, func, reg);
 		else func(false);
 	};
 
@@ -91,14 +43,14 @@
 		var getVar = users.join(),
 			baseURI = '/' + reg + '/v1.4/summoner/by-name/';
 
-		doReqRiot(baseURI + getVar, func, reg);
+		utils.doReqRiot(baseURI + getVar, func, reg);
 	};
 
 	exports.basicObjsById = function (ids, reg, func) {
 		var getVar = ids.join(),
 			baseURI = '/' + reg + '/v1.4/summoner/';
 
-		doReqRiot(baseURI + getVar, func, reg);
+		utils.doReqRiot(baseURI + getVar, func, reg);
 	};
 
 	/*
@@ -122,7 +74,7 @@
 
 		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/masteries';
 
-		doReqRiot(uri, func, reg);
+		utils.doReqRiot(uri, func, reg);
 	};
 
 	/*
@@ -134,6 +86,6 @@
 
 		var uri = '/' + reg + '/v2.2/team/' + ids;
 
-		doReqRiot(uri, func, reg);
+		utils.doReqRiot(uri, func, reg);
 	};
 })();

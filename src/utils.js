@@ -1,4 +1,6 @@
 (function () {
+	var https = require('https');
+
 	/*
 		Utilities class
 		For functions that are needed in many places, to reduce redundancy
@@ -45,5 +47,52 @@
 		array.splice(index, 1);
 
 		return array;
+	};
+
+	/*
+		Internal HTTP request function for requests to the Riot API
+	 */
+	exports.doReqRiot = function (uri, func, reg) {
+		var opts = {
+			host: reg + '.api.pvp.net',
+			port: 443, // HTTPS
+			path: '/api/lol' + uri
+		};
+
+		// API Key added here, with support for other GET variables before this one.
+		if (opts.path.indexOf('?') !== -1) opts.path = opts.path + '&api_key=' + ritoPlsConfig.apiKey;
+		else opts.path = opts.path + '?api_key=' + ritoPlsConfig.apiKey;
+
+		var con = https.get(opts,function (res) {
+			if (res.statusCode === 200) {
+				var data = '';
+
+				res.on('data', function (r) {
+					data += r;
+				});
+
+				res.on('end', function () {
+					func(JSON.parse(data));
+				});
+			}
+
+			else if (res.statusCode === 404) {
+				con.abort();
+				func({});
+			}
+
+			else {
+				con.abort();
+				func({
+					error: true,
+					code: res.statusCode,
+					path: opts.path
+				});
+			}
+
+		}).on('error', function (err) {
+				if (!ritoPlsConfig.ignoreFatal)
+					throw 'ritopls: Fatal Error: Node.js HTTP Error: ' + err;
+			});
 	};
 })();

@@ -113,6 +113,7 @@
 						}
 					});
 					break;
+
 				case 'runes':
 					waitingOn.push('runes');
 
@@ -124,6 +125,7 @@
 						}
 					});
 					break;
+
 				case 'masteries':
 					waitingOn.push('masteries');
 
@@ -135,6 +137,7 @@
 						}
 					});
 					break;
+
 				case 'ranked':
 					waitingOn.push('ranked');
 
@@ -146,6 +149,7 @@
 						}
 					});
 					break;
+
 				case 'summary':
 					waitingOn.push('summary');
 
@@ -157,6 +161,7 @@
 						}
 					});
 					break;
+
 				case 'games':
 					waitingOn.push('games');
 
@@ -168,6 +173,7 @@
 						}
 					});
 					break;
+
 				case 'leagues':
 					waitingOn.push('leagues');
 
@@ -184,6 +190,8 @@
 
 		return interactions;
 	};
+
+	RitoPls.staticAPI = require(__dirname + '/static-http.js');
 
 	module.exports = RitoPls;
 })();
