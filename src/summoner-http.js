@@ -23,10 +23,10 @@
 				break;
 			case 'leagues':
 			case 'elo':
-				uri = '/' + reg + '/v2.3/league/by-summoner/' + id + '/entry';
+				uri = '/' + reg + '/v2.4/league/by-summoner/' + id + '/entry';
 				break;
 			case 'teams':
-				uri = '/' + reg + '/v2.2/team/by-summoner/' + id;
+				uri = '/' + reg + '/v2.3/team/by-summoner/' + id;
 				break;
 		}
 
