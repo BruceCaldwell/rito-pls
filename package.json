@@ -2,8 +2,8 @@
 	"name": "rito-pls",
 	"author": "Bruce Caldwell <bruce@websharks-inc.com",
 	"description": "Riot API wrapper class with in-memory and SQL caching",
-	"version": "1.2.0",
-	"trueVersion": "140531",
+	"version": "1.3.0",
+	"trueVersion": "140622",
 	"dependencies": {
 		"mysql": ">=0.9.0"
 	},
