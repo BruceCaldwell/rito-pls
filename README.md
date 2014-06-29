@@ -1,7 +1,7 @@
 rito-pls
 ========
 
-### Version 1.4.0 / 140628
+### Version 1.5.1 / 140629
 
 [![NPM](https://nodei.co/npm/rito-pls.png?downloads=true)](https://nodei.co/npm/rito-pls/)
 

@@ -56,7 +56,6 @@
 
 		setTimeout(function () { // 1 millisecond timeout to prevent returning data before interactions is returned
 			get.basicByName(name, reg, function (obj) {
-				console.log('got basic data');
 
 				if (!obj || !obj.name) {
 					interactions.emit('error', {id: 0, desc: 'Failed to retrieve summoner basic info object.'});
@@ -69,7 +68,6 @@
 			});
 		}, 1);
 
-		console.log('Interactions');
 		return interactions;
 	};
 
