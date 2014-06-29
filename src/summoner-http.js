@@ -62,7 +62,7 @@
 
 		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/runes';
 
-		doReqRiot(uri, func, reg);
+		utils.doReqRiot(uri, func, reg);
 	};
 
 	/*

@@ -16,6 +16,8 @@
 					ritoPlsConfig[i] = config[i];
 			}
 		}
+
+		return RitoPls;
 	};
 
 	RitoPls.getSummonerByName = function (name, reg) {
@@ -42,7 +44,9 @@
 		eventEmitter.on(name + '-ready', emitReady);
 		eventEmitter.on(name + '-error', emitError);
 
-		Summoner(name, reg, eventEmitter);
+		setTimeout(function () {
+			Summoner(name, reg, eventEmitter);
+		}, 1);
 
 		return interactions;
 	};
@@ -50,21 +54,26 @@
 	RitoPls.getBasicByName = function (name, reg) {
 		var interactions = new EventEmitter;
 
-		get.basicByName(name, reg, function (obj) {
-			if (!obj || !obj.name) {
-				interactions.emit('ready', {id: 0, desc: 'Failed to retrieve summoner basic info object.'});
-				interactions.removeAllListeners();
-			}
-			else {
-				interactions.emit('error', obj);
-				interactions.removeAllListeners();
-			}
-		});
+		setTimeout(function () { // 1 millisecond timeout to prevent returning data before interactions is returned
+			get.basicByName(name, reg, function (obj) {
+				console.log('got basic data');
 
+				if (!obj || !obj.name) {
+					interactions.emit('error', {id: 0, desc: 'Failed to retrieve summoner basic info object.'});
+					interactions.removeAllListeners();
+				}
+				else {
+					interactions.emit('ready', obj);
+					interactions.removeAllListeners();
+				}
+			});
+		}, 1);
+
+		console.log('Interactions');
 		return interactions;
 	};
 
-	RitoPls.prototype.getById = function (slug, id, reg) {
+	RitoPls.getById = function (slug, id, reg) {
 		if (!(slug instanceof Array)) slug = [slug];
 
 		var interactions = new EventEmitter,
@@ -96,97 +105,99 @@
 			interactions.emit('error', errors[slug]);
 		};
 
-		slug.forEach(function (i) {
-			switch (i) {
-				case 'basic':
-					waitingOn.push('basic');
+		setTimeout(function () {
+			slug.forEach(function (i) {
+				switch (i) {
+					case 'basic':
+						waitingOn.push('basic');
 
-					get.basicById(id, reg, function (r) {
-						if (!r || r.error) emitError('id');
-						else {
-							for (var i in r) {
-								if (r.hasOwnProperty(i)) {
-									user[i] = r[i];
+						get.basicById(id, reg, function (r) {
+							if (!r || r.error) emitError('id');
+							else {
+								for (var i in r) {
+									if (r.hasOwnProperty(i)) {
+										user[i] = r[i];
+									}
 								}
+								doneWith('basic');
 							}
-							doneWith('basic');
-						}
-					});
-					break;
+						});
+						break;
 
-				case 'runes':
-					waitingOn.push('runes');
+					case 'runes':
+						waitingOn.push('runes');
 
-					get.runes(id, reg, function (r) {
-						if (!r || r.error) emitError('runes');
-						else {
-							user.runes = r;
-							doneWith('runes');
-						}
-					});
-					break;
+						get.runes(id, reg, function (r) {
+							if (!r || r.error) emitError('runes');
+							else {
+								user.runes = r;
+								doneWith('runes');
+							}
+						});
+						break;
 
-				case 'masteries':
-					waitingOn.push('masteries');
+					case 'masteries':
+						waitingOn.push('masteries');
 
-					get.masteries(id, reg, function (r) {
-						if (!r || r.error) emitError('masteries');
-						else {
-							user.masteries = r;
-							doneWith('masteries');
-						}
-					});
-					break;
+						get.masteries(id, reg, function (r) {
+							if (!r || r.error) emitError('masteries');
+							else {
+								user.masteries = r;
+								doneWith('masteries');
+							}
+						});
+						break;
 
-				case 'ranked':
-					waitingOn.push('ranked');
+					case 'ranked':
+						waitingOn.push('ranked');
 
-					get.ranked(id, reg, function (r) {
-						if (!r || r.error) emitError('ranked');
-						else {
-							user.ranked = r;
-							doneWith('ranked');
-						}
-					});
-					break;
+						get.ranked(id, reg, function (r) {
+							if (!r || r.error) emitError('ranked');
+							else {
+								user.ranked = r;
+								doneWith('ranked');
+							}
+						});
+						break;
 
-				case 'summary':
-					waitingOn.push('summary');
+					case 'summary':
+						waitingOn.push('summary');
 
-					get.summary(id, reg, function (r) {
-						if (!r || r.error) emitError('summary');
-						else {
-							user.summary = r;
-							doneWith('summary');
-						}
-					});
-					break;
+						get.summary(id, reg, function (r) {
+							if (!r || r.error) emitError('summary');
+							else {
+								user.summary = r;
+								doneWith('summary');
+							}
+						});
+						break;
 
-				case 'games':
-					waitingOn.push('games');
+					case 'games':
+						waitingOn.push('games');
 
-					get.games(id, reg, function (r) {
-						if (!r || r.error) emitError('games');
-						else {
-							user.summary = r;
-							doneWith('games');
-						}
-					});
-					break;
+						get.games(id, reg, function (r) {
+							if (!r || r.error) emitError('games');
+							else {
+								user.summary = r;
+								doneWith('games');
+							}
+						});
+						break;
 
-				case 'leagues':
-					waitingOn.push('leagues');
+					case 'leagues':
+						waitingOn.push('leagues');
 
-					get.leagues(id, reg, function (r) {
-						if (!r || r.error) emitError('leagues');
-						else {
-							user.leagues = r;
-							doneWith('leagues');
-						}
-					});
-					break;
-			}
-		});
+						get.leagues(id, reg, function (r) {
+							if (!r || r.error) emitError('leagues');
+							else {
+								user.leagues = r;
+								doneWith('leagues');
+							}
+						});
+						break;
+				}
+			});
+		}, 1);
 
 		return interactions;
 	};
