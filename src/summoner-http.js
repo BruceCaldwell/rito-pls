@@ -33,6 +33,9 @@
 			case 'games':
 				uri = '/' + reg + '/' + versions.game + '/game/by-summoner/' + id + '/recent';
 				break;
+			case 'matches':
+				uri = '/' + reg + '/' + versions.matchhistory + '/matchhistory/' + id;
+				break;
 			case 'leagues':
 			case 'elo':
 				uri = '/' + reg + '/' + versions.league + '/league/by-summoner/' + id + '/entry';

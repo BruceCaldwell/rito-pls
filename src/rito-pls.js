@@ -85,7 +85,8 @@
 			ranked: {id: 3, desc: 'Failed to retrieve summoner ranked stats.'},
 			summary: {id: 4, desc: 'Failed to retrieve summoner stats summary.'},
 			games: {id: 5, desc: 'Failed to retrieve summoner recent games.'},
-			leagues: {id: 6, desc: 'Failed to retrieve summoner league info.'}
+			leagues: {id: 6, desc: 'Failed to retrieve summoner league info.'},
+			matches: {id: 7, desc: 'Failed to retrieve summoner match history.'}
 		};
 
 		var doneWith = function (i) {
