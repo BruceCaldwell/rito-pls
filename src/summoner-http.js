@@ -6,27 +6,39 @@
 
 	var utils = require(__dirname + '/utils.js');
 
+	var versions = {
+		'champion': 'v1.2',
+		'game': 'v1.3',
+		'league': 'v2.5',
+		'status': 'v1.0',
+		'match': 'v2.2',
+		'matchhistory': 'v2.2',
+		'stats': 'v1.3',
+		'summoner': 'v1.4',
+		'team': 'v2.4'
+	};
+
 	exports.summoner = function (slug, id, reg, func) {
 		var uri;
 
 		switch (slug) {
 			case 'summary':
 			case 'stats':
-				uri = '/' + reg + '/v1.3/stats/by-summoner/' + id + '/summary';
+				uri = '/' + reg + '/' + versions.stats + '/stats/by-summoner/' + id + '/summary';
 				break;
 			case 'ranked':
-				uri = '/' + reg + '/v1.3/stats/by-summoner/' + id + '/ranked';
+				uri = '/' + reg + '/' + versions.stats + '/stats/by-summoner/' + id + '/ranked';
 				break;
 			case 'recent':
 			case 'games':
-				uri = '/' + reg + '/v1.3/game/by-summoner/' + id + '/recent';
+				uri = '/' + reg + '/' + versions.game + '/game/by-summoner/' + id + '/recent';
 				break;
 			case 'leagues':
 			case 'elo':
-				uri = '/' + reg + '/v2.4/league/by-summoner/' + id + '/entry';
+				uri = '/' + reg + '/' + versions.league + '/league/by-summoner/' + id + '/entry';
 				break;
 			case 'teams':
-				uri = '/' + reg + '/v2.3/team/by-summoner/' + id;
+				uri = '/' + reg + '/' + versions.team + '/team/by-summoner/' + id;
 				break;
 		}
 
@@ -41,14 +53,14 @@
 		users = utils.fixNames(users, encodeURIComponent);
 
 		var getVar = users.join(),
-			baseURI = '/' + reg + '/v1.4/summoner/by-name/';
+			baseURI = '/' + reg + '/' + versions.summoner + '/summoner/by-name/';
 
 		utils.doReqRiot(baseURI + getVar, func, reg);
 	};
 
 	exports.basicObjsById = function (ids, reg, func) {
 		var getVar = ids.join(),
-			baseURI = '/' + reg + '/v1.4/summoner/';
+			baseURI = '/' + reg + '/' + versions.summoner + '/summoner/';
 
 		utils.doReqRiot(baseURI + getVar, func, reg);
 	};
@@ -60,7 +72,7 @@
 		if (ids instanceof Array)
 			ids = ids.join();
 
-		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/runes';
+		var uri = '/' + reg + '/' + versions.summoner + '/summoner/' + ids + '/runes';
 
 		utils.doReqRiot(uri, func, reg);
 	};
@@ -72,7 +84,7 @@
 		if (ids instanceof Array)
 			ids = ids.join();
 
-		var uri = '/' + reg + '/v1.4/summoner/' + ids + '/masteries';
+		var uri = '/' + reg + '/' + versions.summoner + '/summoner/' + ids + '/masteries';
 
 		utils.doReqRiot(uri, func, reg);
 	};
@@ -84,7 +96,7 @@
 		if (ids instanceof Array)
 			ids = ids.join();
 
-		var uri = '/' + reg + '/v2.2/team/' + ids;
+		var uri = '/' + reg + '/' + versions.team + '/team/' + ids;
 
 		utils.doReqRiot(uri, func, reg);
 	};
