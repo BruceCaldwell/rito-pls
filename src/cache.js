@@ -4,7 +4,7 @@
 		Interfaces to direct memory (through the userIdCache Object and MySQL) and automatically handles flushing cache when required
 	 */
 	var utils = require(__dirname + '/utils.js'),
-		removeSummonerInfo = require(__dirname + '/sql.js').removeSummonerInfo,
+		removeSummonerInfo = require(__dirname + '/cache-sql.js').removeSummonerInfo,
 		config = ritoPlsConfig.caching,
 		userBasicCache = {
 			na: {},

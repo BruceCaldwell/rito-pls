@@ -6,7 +6,7 @@
 	var userInfo = require(__dirname + '/summoner-http.js'),
 		cache = require(__dirname + '/cache.js'),
 		utils = require(__dirname + '/utils.js'),
-		sql = require(__dirname + '/sql.js');
+		sql = require(__dirname + '/cache-sql.js');
 
 	/*
 		Initializing variables

@@ -1,19 +1,18 @@
 {
-	"name": "rito-pls",
-	"author": "Bruce Caldwell <bruce@websharks-inc.com",
-	"description": "Riot API wrapper class with in-memory and SQL caching",
-	"version": "1.5.1",
-	"trueVersion": "140629",
+	"name"        : "rito-pls",
+	"author"      : "Bruce Caldwell <bruce@websharks-inc.com>",
+	"description" : "Riot API wrapper class with in-memory and SQL caching",
+	"version"     : "2.0.0",
 	"dependencies": {
 		"mysql": ">=0.9.0"
 	},
-	"repository": {
+	"repository"  : {
 		"type": "git",
-		"url": "https://github.com/BruceCaldwell/ritopls.git"
+		"url" : "https://github.com/BruceCaldwell/ritopls.git"
 	},
-	"main": "src/rito-pls.js",
-	"license": "GPL v3",
-	"keywords": [
+	"main"        : "module.js",
+	"license"     : "GPL v3",
+	"keywords"    : [
 		"League of Legends",
 		"league",
 		"legends",
